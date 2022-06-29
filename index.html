@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DETRAN</title>
+
+    <style>
+        .theme-light {
+          --text-color: #000;
+          --bg-color: #fff;      --text-princ: blue;
+          --p-strong: red;
+          --btn-color: #fff;
+          --btn-bg: purple;
+          --bg-hover: #BA55D3;
+        }
+        .theme-dark {
+          --text-color: #fff;
+          --bg-color: linear-gradient(#4f4f4f, #000090) no-repeat;
+          --text-princ: yellow;
+          --p-strong: #ADFF2F;
+           --btn-color: #fff;
+          --btn-bg: green;
+          --bg-hover: #32CD32;
+          }
+ 
+        body {
+            width: 100vw;
+            height: 100vh;
+            padding-top: 5%;
+            margin: 0px;
+
+            padding: 0px;
+
+            box-sizing: border-box;
+            text-align: center;
+            font-family: Sans-serif;
+            
+            color: var(--text-color);
+            background: var(--bg-color);
+            /*background-size: cover;*/
+            max-height: 100vh;
+
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        h1 {
+            color: var(--text-princ);
+            text-shadow: 2px 2px 3px gray;
+        }
+        
+
+        p {
+            margin-top: -10px;
+            font-size: 1.4rem;
+            text-align: center;
+
+        }
+        #res {
+            margin-top: 1em;
+            width: 75%;
+            text-align: left;
+            
+        }
+        p strong {
+            color: var(--p-strong);
+        }
+        .theme {
+            margin-top: 5%;
+        }
+        .btn {
+            margin-top: 1em;
+            font-weight: bold;
+            padding: 3px;
+            border-radius: 8px;
+            background-color: var(--btn-bg);
+            color: var(--btn-color);
+        }
+        .btn:hover {
+            background-color: var(--bg-hover);
+            transform: scale(1.1, 1.1);
+        }
+       footer {
+           margin: 0.6em;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+
+    </style>
+
+</head>
+
+<body>
+
+    <input type="radio" name="theme" id="theme-light" class="theme theme-switch" value="light">
+ <label for="theme-light">Claro</label>
+ 
+ <input type="radio" name="theme" id="theme-dark" class="theme theme-switch" value="dark">
+ <label for="theme-light">Escuro</label>
+ <div class="container">
+   
+
+    <h1>Sistema de multas</h1>
+
+
+ <p><b>Velocidade do carro:</b></p> <input type="number" name="txtvel" id="txtvel" placeholder="100" required><br><b>Km/h</b>
+
+
+
+    <button onclick="calcular()" class="btn">Verificar</button>
+
+
+    <div id="res"></div>
+    
+    <footer>
+        &copy; Luciano Oliver
+    </footer>
+
+
+<!--Inicio scripts Java Script-->
+
+    <script>
+    
+    //Inicio script Funçao if 
+
+          function calcular() {
+
+            var txtv = window.document.querySelector('input#txtvel');
+
+            var res = window.document.querySelector('div#res');
+
+            var vel = Number(txtv.value);
+
+
+
+            res.innerHTML = `<p><br>Sua velocidade atual é de <strong>${vel} Km/h</strong></p>`;
+
+            if (vel > 60) {
+
+                res.innerHTML +=  "<p>Você está <strong>Multado</strong> por excesso de velocidade!</p>";
+
+            }
+
+            res.innerHTML += "<p>Dirija sempre usando o cinto de segurança!</p>";
+
+        }
+
+//Fim script Fundão if
+
+//Inicio script dark mode
+    
+        const themeSwitch = document.querySelectorAll(`.theme-switch`)
+        const body = document.querySelector("body")
+        
+        const initialTheme = "theme-light"
+        body.classList.add(initialTheme)
+        document.querySelector(`#${initialTheme}`).checked = true
+        
+     function toggleTheme(e){
+         const theme = this.value
+            body.classList.remove("theme-light","theme-dark")
+            body.classList.add(`theme-${theme}`)
+        }
+        Array.from(themeSwitch).forEach(radio =>radio.addEventListener(`change`, toggleTheme))
+        
+   //Fim scrip Dark mode    
+        
+    </script>
+
+</body>
+
+</html>
